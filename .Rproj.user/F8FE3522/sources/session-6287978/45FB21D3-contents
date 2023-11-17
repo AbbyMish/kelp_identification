@@ -1,0 +1,73 @@
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#                                                                                ##
+# Kelp Identification                                                            ##
+# Data are current as 10/16/23                                                   ##
+# Data source: NAME/ORG                                                          ##
+# R code prepared by Abigail Mish w/ help from Ross                                                        ##
+# Last updated 10/16/23                                                          ##
+#                                                                                ##
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# SUMMARY:
+
+
+# Required Files (check that script is loading latest version):
+# FILE.csv
+
+# Associated Scripts:
+# FILE.R
+
+# TO DO 
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# TABLE OF CONTENTS                                                            ####
+#                                                                                 +
+# RECENT CHANGES TO SCRIPT                                                        +
+# LOAD PACKAGES                                                                   +
+# READ IN AND PREPARE DATA                                                        +
+# MANIPULATE DATA                                                                 +
+#                                                                                 +
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# RECENT CHANGES TO SCRIPT                                                     ####
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# LOAD PACKAGES                                                                ####
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+library(readr) #to get CSV loaded 
+library(tidyverse)
+library(viridis)
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# READ IN AND PREPARE DATA                                                     ####
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+coralnet <- read_csv("/Users/AbbyMish/Desktop/git/kelp_identification/data/coralnetdata.csv") #to get data in R from coralnet 
+
+CTD <- read_csv("/Users/AbbyMish/Desktop/git/kelp_identification/kbay_dropcam/CTDdataSummary.R")
+
+help(select)
+
+Labels_location_Name <- coralnet %>% select(Name,Longitude,Latitude,Label)
+
+# subset for algal presence and GOPRO camera
+Labels <- coralnet %>%
+  filter(grepl("sugar_KE", Label)) %>%
+  filter(grepl("GOPRO", Name))
+
+Longcoralnet <- coralnet %>% 
+  pivot_longer(Latitude:Longitude,
+               names_to = "Name of Photo",
+               values_to = "Identification satus") #explainng what I want my values to be named 
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# MANIPULATE DATA                                                              ####
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+############### SUBSECTION HERE
+
+####
+#<<<<<<<<<<<<<<<<<<<<<<<<<<END OF SCRIPT>>>>>>>>>>>>>>>>>>>>>>>>#
+
+# SCRATCH PAD ####
